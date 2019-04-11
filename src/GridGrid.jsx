@@ -10,8 +10,9 @@ class GridGrid extends React.Component {
       isAsc: false
     };
   }
-  handleRowClick(index) {
+  handleRowClick(index, i) {
     alert("you clicked row: " + (index + 1));
+    console.log(i);
   }
   handleSort = (headerValue, e) => {
     console.log(headerValue);
@@ -60,15 +61,23 @@ class GridGrid extends React.Component {
           </thead>
           <tbody>
             {this.props.bodydata.map((i, index) => (
-              <GridRow handleRowClick={this.handleRowClick.bind(this, index)}>
+              <GridRow
+                handleRowClick={this.handleRowClick.bind(this, index, i)}
+              >
+                {/* <GridColumn ><input type="checkbox" checked={i.selected} /></GridColumn> */}
                 {Object.keys(i).map(function(key) {
-                  return <GridColumn>{i[key]}</GridColumn>;
+                  return (
+                    <GridColumn checked={i.selected} iskey={key}>
+                      {i[key]}
+                    </GridColumn>
+                  );
                 })}
               </GridRow>
             ))}
           </tbody>
           <tfoot>
             <GridRow>
+              <td />
               <td>f1</td>
               <td>f2</td>
               <td>f3</td>

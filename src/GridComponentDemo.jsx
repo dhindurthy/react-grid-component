@@ -5,78 +5,77 @@ class GridComponentDemo extends React.Component {
   render() {
     const bodydata = [
       {
-        name: "Patton Tanner",
-        idd: "DATACATOR",
-        path: "pattontanner@datacator.com"
+        selected: false,
+        name: "Sykes Burnett",
+        idd: "TRASOLA",
+        path: "sykesburnett@trasola.com"
       },
       {
-        name: "Priscilla Cash",
-        idd: "CONFRENZY",
-        path: "priscillacash@confrenzy.com"
+        selected: false,
+        name: "Byers Lara",
+        idd: "BRAINCLIP",
+        path: "byerslara@brainclip.com"
       },
       {
-        name: "Huffman Carney",
-        idd: "GOLISTIC",
-        path: "huffmancarney@golistic.com"
+        selected: false,
+        name: "Frieda Wooten",
+        idd: "POLARIUM",
+        path: "friedawooten@polarium.com"
       },
       {
-        name: "Lang Franks",
-        idd: "INSURETY",
-        path: "langfranks@insurety.com"
+        selected: true,
+        name: "Brittney Rowland",
+        idd: "SOFTMICRO",
+        path: "brittneyrowland@softmicro.com"
       },
       {
-        name: "Mckenzie Calderon",
-        idd: "SINGAVERA",
-        path: "mckenziecalderon@singavera.com"
+        selected: true,
+        name: "Hinton Peck",
+        idd: "EARBANG",
+        path: "hintonpeck@earbang.com"
       },
       {
-        name: "Bessie Stevens",
-        idd: "SQUISH",
-        path: "bessiestevens@squish.com"
+        selected: true,
+        name: "Branch Strong",
+        idd: "NIKUDA",
+        path: "branchstrong@nikuda.com"
       },
       {
-        name: "Berry Day",
-        idd: "OVATION",
-        path: "berryday@ovation.com"
+        selected: false,
+        name: "Holmes Leonard",
+        idd: "COMVENE",
+        path: "holmesleonard@comvene.com"
       },
       {
-        name: "Pamela Lewis",
-        idd: "SUREMAX",
-        path: "pamelalewis@suremax.com"
+        selected: false,
+        name: "Moss Skinner",
+        idd: "GENESYNK",
+        path: "mossskinner@genesynk.com"
       },
       {
-        name: "Garner Robertson",
-        idd: "DENTREX",
-        path: "garnerrobertson@dentrex.com"
+        selected: false,
+        name: "Rachelle Whitehead",
+        idd: "HYPLEX",
+        path: "rachellewhitehead@hyplex.com"
       },
       {
-        name: "Marsha Craig",
-        idd: "VERBUS",
-        path: "marshacraig@verbus.com"
+        selected: false,
+        name: "Marla Gutierrez",
+        idd: "ZYTRAX",
+        path: "marlagutierrez@zytrax.com"
       },
       {
-        name: "Adeline Velez",
-        idd: "ONTAGENE",
-        path: "adelinevelez@ontagene.com"
-      },
-      {
-        name: "Luna Randall",
-        idd: "CORPULSE",
-        path: "lunarandall@corpulse.com"
-      },
-      {
-        name: "Muriel Sims",
-        idd: "UPDAT",
-        path: "murielsims@updat.com"
-      },
-      {
-        name: "Sabrina Woods",
-        idd: "EPLODE",
-        path: "sabrinawoods@eplode.com"
+        selected: false,
+        name: "Leah Barlow",
+        idd: "ENTHAZE",
+        path: "leahbarlow@enthaze.com"
       }
     ];
-
     const headerdata = [
+      {
+        header: "",
+        sorting: null
+      },
       {
         header: "name",
         sorting: true
