@@ -10,37 +10,6 @@ class GridGrid extends React.Component {
       isAsc: false
     };
   }
-  handleRowClick(index, i) {
-    alert("you clicked row: " + (index + 1));
-    console.log(i);
-  }
-  handleSort = (headerValue, e) => {
-    console.log(headerValue);
-    const state = this.state;
-    const sortedData = this.props.bodydata.sort(function(a, b) {
-      var nameA = a[headerValue];
-      var nameB = b[headerValue];
-      if (state.isAsc) {
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-      }
-      if (nameA < nameB) {
-        return 1;
-      }
-      if (nameA > nameB) {
-        return -1;
-      }
-      return 0;
-    });
-    this.setState(state => ({
-      isAsc: state.isAsc ? false : true,
-      bodydata: sortedData
-    }));
-  };
   render() {
     return (
       <div>
@@ -48,41 +17,40 @@ class GridGrid extends React.Component {
         <table>
           <thead>
             <GridRow>
-              {this.props.headerdata.map((i, index) => (
+              {this.props.headSelectAllCell()}
+              {this.props.headerdata.map((row, index) => (
                 <GridColumnHeader
-                  sorting={i.sorting}
+                  sorting={row.sorting}
                   isAsc={this.state.isAsc}
-                  handleSort={this.handleSort.bind(this, i.header)}
+                  handleSort={this.props.handleSort.bind(
+                    this,
+                    row.header,
+                    this.state.isAsc
+                  )}
                 >
-                  {i.header}
+                  {row.header}
                 </GridColumnHeader>
               ))}
             </GridRow>
           </thead>
           <tbody>
-            {this.props.bodydata.map((i, index) => (
+            {this.props.bodydata.map((row, index) => (
               <GridRow
-                handleRowClick={this.handleRowClick.bind(this, index, i)}
+                handleRowClick={this.props.handleRowClick.bind(
+                  this,
+                  index,
+                  row
+                )}
               >
-                {/* <GridColumn ><input type="checkbox" checked={i.selected} /></GridColumn> */}
-                {Object.keys(i).map(function(key) {
-                  return (
-                    <GridColumn checked={i.selected} iskey={key}>
-                      {i[key]}
-                    </GridColumn>
-                  );
+                {this.props.selectionColumn(index, row)}
+                {Object.keys(row).map(function(key) {
+                  if (key !== "selected") {
+                    return <GridColumn>{row[key]}</GridColumn>;
+                  }
                 })}
               </GridRow>
             ))}
           </tbody>
-          <tfoot>
-            <GridRow>
-              <td />
-              <td>f1</td>
-              <td>f2</td>
-              <td>f3</td>
-            </GridRow>
-          </tfoot>
         </table>
       </div>
     );
