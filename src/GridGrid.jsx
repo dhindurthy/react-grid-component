@@ -6,9 +6,7 @@ import GridColumnHeader from "./GridColumnHeader";
 class GridGrid extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isAsc: false
-    };
+    this.state = {};
   }
   render() {
     return (
@@ -20,8 +18,9 @@ class GridGrid extends React.Component {
               {this.props.headSelectAllCell()}
               {this.props.headerdata.map((row, index) => (
                 <GridColumnHeader
+                  key={index}
                   sorting={row.sorting}
-                  isAsc={this.state.isAsc}
+                  isAsc={this.props.isAsc}
                   handleSort={this.props.handleSort.bind(
                     this,
                     row.header,
@@ -41,17 +40,22 @@ class GridGrid extends React.Component {
                   index,
                   row
                 )}
+                key={index}
               >
                 {this.props.selectionColumn(index, row)}
                 {Object.keys(row).map(function(key) {
                   if (key !== "selected") {
-                    return <GridColumn>{row[key]}</GridColumn>;
+                    return (
+                      <GridColumn key={index + key}>{row[key]}</GridColumn>
+                    );
                   }
                 })}
               </GridRow>
             ))}
           </tbody>
         </table>
+        {/* <button onClick={this.handlePrev}>Prev</button>
+        <button onClick={this.handleNext}>Next</button> */}
       </div>
     );
   }
