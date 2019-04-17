@@ -105,7 +105,7 @@ class GridComponentDemo extends React.Component {
         />
         <h5>Rows selected: </h5>
         {this.state.selectedRows.map((row, index) => (
-          <span>{row.name} |</span>
+          <span key={index}>{row.name} |</span>
         ))}
       </section>
     );

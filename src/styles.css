@@ -7,11 +7,31 @@ table,
 tr,
 td,
 th {
-  border: 1px solid gray;
+  /* border-right: 1px solid gray; */
+  border-radius: 10px;
   padding: 10px;
+  text-align: left;
+}
+
+th,
+tr {
+  /* border-bottom: 1px solid gray; */
+  border-radius: 10px;
 }
 
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  background-color: #c8d4f8;
+  border-radius: 10px;
+  height: 600px;
+}
+
+/* .grid-table {
+  display: flex;
+  flex-direction: column;
+} */
+
+.grid-table-body {
+  overflow-y: scroll;
 }

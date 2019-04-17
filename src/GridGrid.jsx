@@ -10,9 +10,9 @@ class GridGrid extends React.Component {
   }
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h4>Grid Component</h4>
-        <table>
+        <table className="grid-table">
           <thead>
             <GridRow>
               {this.props.headSelectAllCell()}
@@ -32,7 +32,7 @@ class GridGrid extends React.Component {
               ))}
             </GridRow>
           </thead>
-          <tbody>
+          <tbody className="grid-table-body">
             {this.props.bodydata.map((row, index) => (
               <GridRow
                 handleRowClick={this.props.handleRowClick.bind(
@@ -49,6 +49,7 @@ class GridGrid extends React.Component {
                       <GridColumn key={index + key}>{row[key]}</GridColumn>
                     );
                   }
+                  return null;
                 })}
               </GridRow>
             ))}
@@ -56,7 +57,7 @@ class GridGrid extends React.Component {
         </table>
         {/* <button onClick={this.handlePrev}>Prev</button>
         <button onClick={this.handleNext}>Next</button> */}
-      </div>
+      </React.Fragment>
     );
   }
 }
