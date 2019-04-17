@@ -5,6 +5,7 @@ function Checkbox(props) {
     <React.Fragment>
       <label htmlFor="gc">{props.label}</label>
       <input
+        className="input-checkbox"
         id="gc"
         type="checkbox"
         checked={props.selected}

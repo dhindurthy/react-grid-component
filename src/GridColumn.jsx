@@ -1,7 +1,7 @@
 import React from "react";
 
 function GridColumn(props) {
-  return <td>{props.children}</td>;
+  return <td style={{ width: props.width + "em" }}>{props.children}</td>;
 }
 
 export default GridColumn;

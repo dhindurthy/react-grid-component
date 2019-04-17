@@ -18,6 +18,9 @@ tr {
   /* border-bottom: 1px solid gray; */
   border-radius: 10px;
 }
+th {
+  border-bottom: 1px solid gray;
+}
 
 table {
   border-collapse: collapse;
@@ -27,11 +30,20 @@ table {
   height: 600px;
 }
 
-/* .grid-table {
+.grid-table {
   display: flex;
   flex-direction: column;
-} */
+}
 
 .grid-table-body {
   overflow-y: scroll;
+}
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+select {
+  /* width: 100px; */
+  border-radius: 0.5rem;
+  height: 30px;
 }

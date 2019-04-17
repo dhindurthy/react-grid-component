@@ -3,40 +3,22 @@ import GridGrid from "./GridGrid";
 import GridColumn from "./GridColumn";
 import GridColumnHeader from "./GridColumnHeader";
 import Checkbox from "./Checkbox";
+import Select from "./Select";
 import DataData from "./data";
 
 class GridComponentDemo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      headerdata: [
-        {
-          header: "name",
-          sorting: true
-        },
-        {
-          header: "idd",
-          sorting: true
-        },
-        {
-          header: "path",
-          sorting: false
-        }
-      ],
       bodydata: DataData,
       isAsc: false,
       selectedRows: []
     };
   }
-  selectionChanged(index, row) {
-    // console.log("selection clicked on row: " + index);
-    // console.log("maintain the selection state here sucka");
-    // console.log(row);
+  selectionChanged(row, index) {
     const newbodydata = this.state.bodydata;
     const selectedRows = [];
-    // for (let i = 0; i < newbodydata.length; i++) {
     for (let i = 0, len = newbodydata.length; i < len; i++) {
-      // for (let i = newbodydata.length - 1; i >= 0; i--) {
       if (i === index) {
         newbodydata[i].selected = newbodydata[i].selected ? false : true;
       }
@@ -50,12 +32,24 @@ class GridComponentDemo extends React.Component {
       selectedRows: selectedRows
     }));
   }
-  handleRowClick(index, row) {
-    // console.log("casually clicked on row: " + index);
-    // console.log(row);
+  changeSelect(row, index, e) {
+    const newbodydata = this.state.bodydata;
+    const selectedRows = [];
+    for (let i = 0, len = newbodydata.length; i < len; i++) {
+      if (i === index) {
+        newbodydata[i].incharge = e.target.value;
+      }
+      //just for gathering sleected rows for demo
+      if (newbodydata[i].selected) {
+        selectedRows.push(newbodydata[i]);
+      }
+    }
+    this.setState(state => ({
+      bodydata: newbodydata
+    }));
   }
-  handleSort = (headerValue, isAsc) => {
-    // console.log("headervalue is: " + isAsc + headerValue);
+  handleRowClick(row, index) {}
+  handleSort = headerValue => {
     const state = this.state;
     const sortedData = state.bodydata.sort(function(a, b) {
       var nameA = a[headerValue];
@@ -86,24 +80,57 @@ class GridComponentDemo extends React.Component {
       <section>
         <GridGrid
           bodydata={this.state.bodydata}
-          headerdata={this.state.headerdata}
-          handleSort={this.handleSort}
           isAsc={this.state.isAsc}
           handleRowClick={this.handleRowClick}
-          headSelectAllCell={() => (
-            <GridColumnHeader>whatever</GridColumnHeader>
+          stickyHeader={true}
+          headerRow={() => (
+            <React.Fragment>
+              <GridColumnHeader width="5">Stupids</GridColumnHeader>
+              <GridColumnHeader
+                width="7"
+                sorting={true}
+                isAsc={this.state.isAsc}
+                handleSort={this.handleSort.bind(this, "name")}
+              >
+                Name
+              </GridColumnHeader>
+              <GridColumnHeader
+                width="6.1"
+                sorting={true}
+                isAsc={this.state.isAsc}
+                handleSort={this.handleSort.bind(this, "idd")}
+              >
+                IDD
+              </GridColumnHeader>
+              <GridColumnHeader width="13.15">Path</GridColumnHeader>
+              <GridColumnHeader width="5.94">InCharge</GridColumnHeader>
+            </React.Fragment>
           )}
-          selectionColumn={(index, row) => (
-            <GridColumn>
-              <Checkbox
-                selected={row.selected}
-                onChange={this.selectionChanged.bind(this, index, row)}
-                label={"Row " + index}
-              />
-            </GridColumn>
+          otherRows={(row, index) => (
+            <React.Fragment>
+              <GridColumn key={"selected" + index} width="5">
+                <Checkbox
+                  selected={row.selected}
+                  onChange={this.selectionChanged.bind(this, row, index)}
+                  label={index}
+                />
+              </GridColumn>
+              <GridColumn key={"name" + index}>{row.name}</GridColumn>
+              <GridColumn key={"idd" + index}>{row.idd}</GridColumn>
+              <GridColumn key={"path" + index}>{row.path}</GridColumn>
+              <GridColumn key={"incharge" + index}>
+                {row.incharge}
+                <br />
+                <Select
+                  optionData={row.optionData}
+                  onChange={this.changeSelect.bind(this, row, index)}
+                  value={row.incharge}
+                />
+              </GridColumn>
+            </React.Fragment>
           )}
         />
-        <h5>Rows selected: </h5>
+        <h5>Rows selected({this.state.selectedRows.length}): </h5>
         {this.state.selectedRows.map((row, index) => (
           <span key={index}>{row.name} |</span>
         ))}
