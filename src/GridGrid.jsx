@@ -12,11 +12,7 @@ class GridGrid extends React.Component {
           <tbody className="grid-table-body">
             {this.props.bodydata.map((row, index) => (
               <GridRow
-                handleRowClick={this.props.handleRowClick.bind(
-                  this,
-                  row,
-                  index
-                )}
+                onRowClick={this.props.onRowClick.bind(this, row, index)}
                 key={index}
               >
                 {this.props.otherRows(row, index)}

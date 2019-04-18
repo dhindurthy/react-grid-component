@@ -12,7 +12,8 @@ class GridComponentDemo extends React.Component {
     this.state = {
       bodydata: DataData,
       isAsc: false,
-      selectedRows: []
+      selectedRows: [],
+      isDisabled: true
     };
   }
   selectionChanged(row, index) {
@@ -29,7 +30,8 @@ class GridComponentDemo extends React.Component {
     }
     this.setState(state => ({
       bodydata: newbodydata,
-      selectedRows: selectedRows
+      selectedRows: selectedRows,
+      isDisabled: false
     }));
   }
   changeSelect(row, index, e) {
@@ -45,10 +47,13 @@ class GridComponentDemo extends React.Component {
       }
     }
     this.setState(state => ({
+      isDisabled: false,
       bodydata: newbodydata
     }));
   }
-  handleRowClick(row, index) {}
+  onRowClick(row, index) {
+    console.log("You clikced row: " + index);
+  }
   handleSort = headerValue => {
     const state = this.state;
     const sortedData = state.bodydata.sort(function(a, b) {
@@ -81,7 +86,7 @@ class GridComponentDemo extends React.Component {
         <GridGrid
           bodydata={this.state.bodydata}
           isAsc={this.state.isAsc}
-          handleRowClick={this.handleRowClick}
+          onRowClick={this.onRowClick}
           stickyHeader={true}
           headerRow={() => (
             <React.Fragment>
@@ -134,6 +139,13 @@ class GridComponentDemo extends React.Component {
         {this.state.selectedRows.map((row, index) => (
           <span key={index}>{row.name} |</span>
         ))}
+        <br />
+        <button
+          disabled={this.state.isDisabled}
+          className={this.state.isDisabled ? "disabled" : "enabled"}
+        >
+          Dirty Grid
+        </button>
       </section>
     );
   }

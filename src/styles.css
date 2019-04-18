@@ -47,3 +47,13 @@ select {
   border-radius: 0.5rem;
   height: 30px;
 }
+
+button {
+  /* width: 100px; */
+  border-radius: 0.5rem;
+  height: 25px;
+}
+
+button.enabled {
+  background-color: #c8d4f8;
+}
