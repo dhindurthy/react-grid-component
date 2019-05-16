@@ -5,11 +5,14 @@ class GridGrid extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <table className={this.props.stickyHeader ? "grid-table" : ""}>
-          <thead>
+        <table
+          role="grid"
+          className={this.props.stickyHeader ? "grid-table" : ""}
+        >
+          <thead role="rowgroup">
             <GridRow>{this.props.headerRow()}</GridRow>
           </thead>
-          <tbody className="grid-table-body">
+          <tbody role="rowgroup" className="grid-table-body">
             {this.props.bodydata.map((row, index) => (
               <GridRow
                 onRowClick={this.props.onRowClick.bind(this, row, index)}
