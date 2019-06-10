@@ -6,7 +6,7 @@ function GridColumnHeader(props) {
       {props.children}
       {props.sorting && (
         <button onClick={props.handleSort}>
-          Sortey -{props.isAsc ? "a" : "d"}
+          Sort -{props.isAsc ? "a" : "d"}
         </button>
       )}
     </th>

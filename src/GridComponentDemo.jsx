@@ -90,7 +90,7 @@ class GridComponentDemo extends React.Component {
           stickyHeader={true}
           headerRow={() => (
             <React.Fragment>
-              <GridColumnHeader width="5">Stupids</GridColumnHeader>
+              <GridColumnHeader width="5">**</GridColumnHeader>
               <GridColumnHeader
                 width="7"
                 sorting={true}
@@ -105,7 +105,7 @@ class GridComponentDemo extends React.Component {
                 isAsc={this.state.isAsc}
                 handleSort={this.handleSort.bind(this, "idd")}
               >
-                IDD
+                Comp
               </GridColumnHeader>
               <GridColumnHeader width="13.15">Path</GridColumnHeader>
               <GridColumnHeader width="5.94">InCharge</GridColumnHeader>
