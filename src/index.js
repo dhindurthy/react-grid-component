@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import GridComponentDemo from "./GridComponentDemo";
 
 import "./styles.css";
+import "./styles.scss";
 
 function App() {
   return (

@@ -9,10 +9,10 @@ class GridGrid extends React.Component {
           role="grid"
           className={this.props.stickyHeader ? "grid-table" : ""}
         >
-          <thead role="rowgroup">
+          <thead>
             <GridRow>{this.props.headerRow()}</GridRow>
           </thead>
-          <tbody role="rowgroup" className="grid-table-body">
+          <tbody className="grid-table-body">
             {this.props.bodydata.map((row, index) => (
               <GridRow
                 onRowClick={this.props.onRowClick.bind(this, row, index)}
