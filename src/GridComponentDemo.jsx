@@ -4,6 +4,7 @@ import GridColumn from "./GridColumn";
 import GridColumnHeader from "./GridColumnHeader";
 import Checkbox from "./Checkbox";
 import Select from "./Select";
+import Input from "./Input";
 import DataData from "./data";
 
 class GridComponentDemo extends React.Component {
@@ -53,6 +54,23 @@ class GridComponentDemo extends React.Component {
     for (let i = 0, len = newbodydata.length; i < len; i++) {
       if (i === index) {
         newbodydata[i].incharge = e.target.value;
+      }
+      //just for gathering sleected rows for demo
+      if (newbodydata[i].selected) {
+        selectedRows.push(newbodydata[i]);
+      }
+    }
+    this.setState((state) => ({
+      isDisabled: false,
+      bodydata: newbodydata
+    }));
+  }
+  changeInput(row, index, e) {
+    const newbodydata = this.state.bodydata;
+    const selectedRows = [];
+    for (let i = 0, len = newbodydata.length; i < len; i++) {
+      if (i === index) {
+        newbodydata[i].name = e.target.value;
       }
       //just for gathering sleected rows for demo
       if (newbodydata[i].selected) {
@@ -133,7 +151,13 @@ class GridComponentDemo extends React.Component {
                   label={index}
                 />
               </GridColumn>
-              <GridColumn key={"name" + index}>{row.name}</GridColumn>
+              <GridColumn key={"name" + index}>
+                {/* {row.name} */}
+                <Input
+                  onChange={this.changeInput.bind(this, row, index)}
+                  value={row.name}
+                />
+              </GridColumn>
               <GridColumn key={"idd" + index}>{row.idd}</GridColumn>
               <GridColumn key={"path" + index}>{row.path}</GridColumn>
               <GridColumn key={"incharge" + index}>
