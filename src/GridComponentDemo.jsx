@@ -16,6 +16,19 @@ class GridComponentDemo extends React.Component {
       isDisabled: true
     };
   }
+  componentDidMount() {
+    const newbodydata = this.state.bodydata;
+    const selectedRows = [];
+    for (let i = 0, len = newbodydata.length; i < len; i++) {
+      //just for gathering sleected rows for demo
+      if (newbodydata[i].selected) {
+        selectedRows.push(newbodydata[i]);
+      }
+    }
+    this.setState((state) => ({
+      selectedRows: selectedRows
+    }));
+  }
   selectionChanged(row, index) {
     const newbodydata = this.state.bodydata;
     const selectedRows = [];
@@ -28,7 +41,7 @@ class GridComponentDemo extends React.Component {
         selectedRows.push(newbodydata[i]);
       }
     }
-    this.setState(state => ({
+    this.setState((state) => ({
       bodydata: newbodydata,
       selectedRows: selectedRows,
       isDisabled: false
@@ -46,7 +59,7 @@ class GridComponentDemo extends React.Component {
         selectedRows.push(newbodydata[i]);
       }
     }
-    this.setState(state => ({
+    this.setState((state) => ({
       isDisabled: false,
       bodydata: newbodydata
     }));
@@ -54,9 +67,9 @@ class GridComponentDemo extends React.Component {
   onRowClick(row, index) {
     console.log("You clikced row: " + index);
   }
-  handleSort = headerValue => {
+  handleSort = (headerValue) => {
     const state = this.state;
-    const sortedData = state.bodydata.sort(function(a, b) {
+    const sortedData = state.bodydata.sort(function (a, b) {
       var nameA = a[headerValue];
       var nameB = b[headerValue];
       if (state.isAsc) {
@@ -75,14 +88,14 @@ class GridComponentDemo extends React.Component {
       }
       return 0;
     });
-    this.setState(state => ({
+    this.setState((state) => ({
       isAsc: state.isAsc ? false : true,
       bodydata: sortedData
     }));
   };
   render() {
     return (
-      <section>
+      <section className="main-section">
         <GridGrid
           bodydata={this.state.bodydata}
           isAsc={this.state.isAsc}
@@ -135,17 +148,22 @@ class GridComponentDemo extends React.Component {
             </React.Fragment>
           )}
         />
-        <h5>Rows selected({this.state.selectedRows.length}): </h5>
-        {this.state.selectedRows.map((row, index) => (
-          <span key={index}>{row.name} |</span>
-        ))}
-        <br />
-        <button
-          disabled={this.state.isDisabled}
-          className={this.state.isDisabled ? "disabled" : "enabled"}
-        >
-          Dirty Grid
-        </button>
+        <div>
+          <h5>Rows selected({this.state.selectedRows.length}): </h5>
+          {this.state.selectedRows.map((row, index) => (
+            <div>
+              <span key={index}>{row.name} |</span>
+              <span key={index}>{row.incharge} |</span>
+            </div>
+          ))}
+          <br />
+          <button
+            disabled={this.state.isDisabled}
+            className={this.state.isDisabled ? "disabled" : "enabled"}
+          >
+            Dirty Grid
+          </button>
+        </div>
       </section>
     );
   }

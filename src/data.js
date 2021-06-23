@@ -4,7 +4,7 @@ const somedata = [
     name: "Geneva Finley",
     idd: "TRIPSCH",
     path: "genevafinley@tripsch.com",
-    selected: true,
+    selected: false,
     incharge: "Patterson",
     optionData: [
       {
@@ -140,7 +140,7 @@ const somedata = [
     name: "Chen Hart",
     idd: "CENTREXIN",
     path: "chenhart@centrexin.com",
-    selected: true,
+    selected: false,
     incharge: "Tillman",
     optionData: [
       {
@@ -174,7 +174,7 @@ const somedata = [
     name: "Solomon Kemp",
     idd: "AQUACINE",
     path: "solomonkemp@aquacine.com",
-    selected: true,
+    selected: false,
     incharge: "Flowers",
     optionData: [
       {
@@ -310,7 +310,7 @@ const somedata = [
     name: "Vanessa Campos",
     idd: "MARTGO",
     path: "vanessacampos@martgo.com",
-    selected: true,
+    selected: false,
     incharge: "Yates",
     optionData: [
       {
