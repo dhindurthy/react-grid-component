@@ -149,6 +149,15 @@ class GridComponentDemo extends React.Component {
           )}
         />
         <div>
+          <h5>Original Data </h5>
+          {this.state.bodydata.map((row, index) => (
+            <div>
+              <span key={index}>{row.name} |</span>
+              <span key={index}>{row.incharge} |</span>
+            </div>
+          ))}
+        </div>
+        <div>
           <h5>Rows selected({this.state.selectedRows.length}): </h5>
           {this.state.selectedRows.map((row, index) => (
             <div>
